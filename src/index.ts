@@ -29,9 +29,12 @@ const mistralKey = process.env.MISTRAL_API_KEY;
 const groqKey = process.env.GROQ_API_KEY;
 
 const availableProviders: APIProvider[] = [];
-if (geminiKey) availableProviders.push("gemini");
+// Mistral: Unlimited free tier - PRIMARY API
 if (mistralKey) availableProviders.push("mistral");
-if (groqKey) availableProviders.push("groq");
+// Gemini: Limited to 20 requests/day (quota exhausted today - resets tomorrow)
+// Groq: Models decommissioned - awaiting account tier upgrade
+// TODO: Add Gemini back when quota resets (24h cycle)
+// TODO: Fix Groq when account tier supports current models
 
 if (availableProviders.length === 0) {
   console.error("❌ Error: No API keys configured!");
