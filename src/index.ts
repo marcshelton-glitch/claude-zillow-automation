@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 interface Property {
   id: string;
@@ -19,7 +19,16 @@ interface GeneratedContent {
   voiceoverScript: string;
 }
 
-const client = new Anthropic();
+const apiKey = process.env.GOOGLE_API_KEY;
+if (!apiKey) {
+  console.error("Error: GOOGLE_API_KEY environment variable not set");
+  console.error(
+    "Get a free API key at: https://aistudio.google.com/app/apikey"
+  );
+  process.exit(1);
+}
+
+const genAI = new GoogleGenerativeAI(apiKey);
 
 // Mock Zillow property data
 const mockProperties: Property[] = [
@@ -61,7 +70,8 @@ async function generateMarketingContent(
 ): Promise<GeneratedContent> {
   console.log(`\n🏠 Processing: ${property.address}`);
 
-  // Use Claude to generate marketing content
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
   const prompt = `You are a real estate marketing expert. Generate engaging marketing content for this property:
 
 Property Details:
@@ -82,28 +92,16 @@ Generate the following in JSON format:
 
 Make it engaging, professional, and focus on selling points. Return ONLY valid JSON.`;
 
-  const message = await client.messages.create({
-    model: "claude-opus-4-1-20250805",
-    max_tokens: 1024,
-    messages: [
-      {
-        role: "user",
-        content: prompt,
-      },
-    ],
-  });
-
-  // Extract the text content from the response
-  const responseText =
-    message.content[0].type === "text" ? message.content[0].text : "";
+  const result = await model.generateContent(prompt);
+  const responseText = result.response.text();
 
   // Parse the JSON response
   let generatedData;
   try {
     generatedData = JSON.parse(responseText);
   } catch (error) {
-    console.error("Failed to parse Claude response:", responseText);
-    throw new Error("Invalid JSON response from Claude");
+    console.error("Failed to parse Gemini response:", responseText);
+    throw new Error("Invalid JSON response from Gemini");
   }
 
   return {
@@ -116,7 +114,6 @@ Make it engaging, professional, and focus on selling points. Return ONLY valid J
 }
 
 function generateViewmaxCommand(content: GeneratedContent): string {
-  // This would be the actual command to use Viewmax MCP
   return `
 viewmax generate --type "property-showcase" \\
   --property-address "${content.property.address}" \\
@@ -128,9 +125,11 @@ viewmax generate --type "property-showcase" \\
 }
 
 async function processZillowListings(): Promise<void> {
-  console.log("🚀 Claude + Zillow Automation Tool");
-  console.log("===================================\n");
-  console.log("📊 Processing properties with Claude + Viewmax MCP...\n");
+  console.log("🚀 Claude + Zillow Automation Tool (Google Gemini - FREE)");
+  console.log("========================================================\n");
+  console.log(
+    "📊 Processing properties with Google Gemini 2.0 Flash + Viewmax MCP...\n"
+  );
 
   const allContent: GeneratedContent[] = [];
 
@@ -141,10 +140,10 @@ async function processZillowListings(): Promise<void> {
 
       console.log(`✅ Generated content for: ${property.address}`);
       console.log(`💰 Price: $${property.price.toLocaleString()}`);
-      console.log(`📝 Marketing: ${content.marketingDescription.substring(0, 100)}...`);
       console.log(
-        `🎬 Video: ${content.videoPrompt.substring(0, 80)}...`
+        `📝 Marketing: ${content.marketingDescription.substring(0, 100)}...`
       );
+      console.log(`🎬 Video: ${content.videoPrompt.substring(0, 80)}...`);
     } catch (error) {
       console.error(`❌ Error processing ${property.address}:`, error);
     }

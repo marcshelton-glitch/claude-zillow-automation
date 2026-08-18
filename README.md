@@ -1,11 +1,11 @@
 # Claude + Zillow Automation Tool
 
-Automatically generate real estate marketing content using Claude AI and Viewmax MCP.
+Automatically generate real estate marketing content using **Google Gemini Flash 3.0** (FREE) and Viewmax MCP.
 
 ## What This Does
 
 1. **Analyzes Property Listings** - Processes real estate properties
-2. **Generates Marketing Content** - Uses Claude to create compelling descriptions
+2. **Generates Marketing Content** - Uses Google Gemini to create compelling descriptions
 3. **Creates Media Prompts** - Generates instructions for Viewmax to create:
    - Promotional videos
    - Hero images
@@ -13,7 +13,8 @@ Automatically generate real estate marketing content using Claude AI and Viewmax
 
 ## Features
 
-- 🤖 Claude AI-powered content generation
+- 🤖 **FREE** - Google Gemini Flash 3.0 API (no credit card required!)
+- 🚀 **Fast** - Gemini 2.0 Flash is blazingly fast
 - 🎬 Viewmax MCP integration for media creation
 - 📊 Batch processing of multiple properties
 - 💰 Real estate focused marketing copy
@@ -25,11 +26,18 @@ Automatically generate real estate marketing content using Claude AI and Viewmax
 npm install
 ```
 
-## Configuration
+## Setup (Free!)
 
-Set your Claude API key:
+### 1. Get a Free Google API Key
+Visit: **https://aistudio.google.com/app/apikey**
+
+- No credit card required
+- Free tier includes generous quotas
+- Gemini Flash 3.0 is completely free
+
+### 2. Set Your API Key
 ```bash
-export ANTHROPIC_API_KEY=your_api_key_here
+export GOOGLE_API_KEY=your_free_api_key_here
 ```
 
 ## Usage

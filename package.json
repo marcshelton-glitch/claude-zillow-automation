@@ -1,7 +1,7 @@
 {
   "name": "claude-zillow-automation",
   "version": "1.0.0",
-  "description": "Automate real estate marketing content generation using Claude + Viewmax MCP",
+  "description": "Automate real estate marketing content generation using Google Gemini + Viewmax MCP (FREE)",
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
@@ -10,18 +10,20 @@
     "start": "node dist/index.js"
   },
   "keywords": [
-    "claude",
+    "gemini",
+    "google-ai",
     "zillow",
     "real-estate",
     "marketing",
     "ai",
     "automation",
-    "viewmax"
+    "viewmax",
+    "free"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.24.0",
+    "@google/generative-ai": "^0.11.0",
     "axios": "^1.6.0"
   },
   "devDependencies": {
