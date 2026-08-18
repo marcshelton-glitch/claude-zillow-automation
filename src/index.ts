@@ -168,6 +168,9 @@ async function processZillowListings(): Promise<void> {
       const content = await generateMarketingContent(property);
       allContent.push(content);
 
+      // Add delay between requests to respect rate limits
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
       console.log(`✅ Generated content for: ${property.address}`);
       console.log(`💰 Price: $${property.price.toLocaleString()}`);
       console.log(
