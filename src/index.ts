@@ -70,7 +70,7 @@ async function generateMarketingContent(
 ): Promise<GeneratedContent> {
   console.log(`\n🏠 Processing: ${property.address}`);
 
-  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
 
   const prompt = `You are a real estate marketing expert. Generate engaging marketing content for this property:
 
