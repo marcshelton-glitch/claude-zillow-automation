@@ -102,7 +102,7 @@ async function generateMarketingContent(
 
   const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
 
-  const prompt = `You are a real estate marketing expert. Generate engaging marketing content for this property:
+  const prompt = `You are a real estate marketing expert. Analyze this property and its photo, then generate engaging marketing content.
 
 Property Details:
 - Address: ${property.address}
@@ -112,15 +112,21 @@ Property Details:
 - Square Feet: ${property.sqft.toLocaleString()}
 - Description: ${property.description}
 
+CRITICAL INSTRUCTIONS:
+1. Analyze the property photo provided to identify specific architectural features, color schemes, and design elements
+2. Reference ACTUAL visible features from the photo in all prompts (e.g., "the blue shutters," "the brick facade," "the stone entryway")
+3. All prompts MUST be property-specific, not generic
+4. Video and image prompts MUST reference what you see in the actual photo
+
 Generate the following in JSON format:
 {
-  "marketingDescription": "A compelling 2-3 sentence marketing description for the listing",
-  "videoPrompt": "A prompt for generating a property showcase video using Viewmax. CRITICAL: Must specifically mention touring the ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms. Include property address ${property.address} and specific features from the description. Describe camera movements and specific rooms.",
-  "imagePrompt": "A prompt for generating a hero image of the property using Viewmax. CRITICAL: Must include the specific property address ${property.address} and reference the ${property.bedrooms}-bedroom, ${property.bathrooms}-bathroom home.",
-  "voiceoverScript": "A 30-second voiceover script for the property video. CRITICAL: Must mention the ${property.bedrooms} bedrooms, ${property.bathrooms} bathrooms, and ${property.sqft.toLocaleString()} square feet."
+  "marketingDescription": "A compelling 2-3 sentence marketing description referencing specific photo features",
+  "videoPrompt": "VIEWMAX INSTRUCTION: Detailed video tour prompt that references the ${property.bedrooms} bedrooms, ${property.bathrooms} bathrooms, and specific architectural features visible in the property photo. Include property address ${property.address}. Describe exact camera movements and specific visible features.",
+  "imagePrompt": "VIEWMAX INSTRUCTION: Hero image prompt for ${property.address} that references the style and features seen in the property photo. Must include ${property.bedrooms}-bedroom, ${property.bathrooms}-bathroom home and reference specific colors/materials visible.",
+  "voiceoverScript": "A 30-second voiceover for ${property.address} mentioning ${property.bedrooms} bedrooms, ${property.bathrooms} bathrooms, ${property.sqft.toLocaleString()} square feet, and specific property features from the photo."
 }
 
-Make it engaging, professional, and focus on selling points. Ensure all property-specific details are included in each prompt. Return ONLY valid JSON.`;
+Ensure all content is PROPERTY-SPECIFIC based on the actual photo. Return ONLY valid JSON.`;
 
   const result = await model.generateContent(prompt);
   const responseText = result.response.text();
