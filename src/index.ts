@@ -133,7 +133,8 @@ async function generateWithMistral(property: Property, prompt: string): Promise<
   }, {
     headers: { Authorization: `Bearer ${mistralKey}` },
   });
-  const text = response.data.choices[0].message.content;
+  let text = response.data.choices[0].message.content;
+  text = text.replace(/^```json\s*/g, "").replace(/\s*```$/g, "").trim();
   return JSON.parse(text);
 }
 
@@ -143,7 +144,7 @@ async function generateWithGroq(property: Property, prompt: string): Promise<any
     const response = await axios.post(
       "https://api.groq.com/openai/v1/chat/completions",
       {
-        model: "mixtral-8x7b-32768",
+        model: "mixtral-8x7b-32768-gemma-2-9b-it",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.7,
         max_tokens: 2048,
@@ -156,7 +157,8 @@ async function generateWithGroq(property: Property, prompt: string): Promise<any
         timeout: 30000,
       }
     );
-    const text = response.data.choices[0].message.content;
+    let text = response.data.choices[0].message.content;
+    text = text.replace(/^```json\s*/g, "").replace(/\s*```$/g, "").trim();
     return JSON.parse(text);
   } catch (error: any) {
     if (error.response?.data) {
