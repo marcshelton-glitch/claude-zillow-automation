@@ -41,7 +41,7 @@ const mockProperties: Property[] = [
     sqft: 1394,
     description:
       "Spacious family home with updated kitchen and bright living spaces",
-    imageUrl: "https://example.com/prop1.jpg",
+    imageUrl: "https://photos.zillowstatic.com/fp/af2879b7ae8d3fd308a42e3d7bd4d9ba-cc_ft_960.jpg",
   },
   {
     id: "prop-002",
@@ -51,7 +51,7 @@ const mockProperties: Property[] = [
     bathrooms: 3,
     sqft: 2004,
     description: "Well-maintained home with open floor plan and finished backyard",
-    imageUrl: "https://example.com/prop2.jpg",
+    imageUrl: "https://photos.zillowstatic.com/fp/ef978ff8b90d1ef8b67c261c21f7c639-cc_ft_960.jpg",
   },
   {
     id: "prop-003",
@@ -61,7 +61,7 @@ const mockProperties: Property[] = [
     bathrooms: 3,
     sqft: 2567,
     description: "Premium property with modern amenities and spacious master suite",
-    imageUrl: "https://example.com/prop3.jpg",
+    imageUrl: "https://photos.zillowstatic.com/fp/7af760fc969161baf23204e2bb971ed7-cc_ft_960.jpg",
   },
   {
     id: "prop-004",
@@ -71,7 +71,7 @@ const mockProperties: Property[] = [
     bathrooms: 2,
     sqft: 1422,
     description: "Excellent opportunity coming soon in desirable neighborhood",
-    imageUrl: "https://example.com/prop4.jpg",
+    imageUrl: "https://photos.zillowstatic.com/fp/8f2f7c71795a5c75b6425cfe0224a7f5-cc_ft_960.jpg",
   },
   {
     id: "prop-005",
@@ -81,7 +81,7 @@ const mockProperties: Property[] = [
     bathrooms: 3,
     sqft: 1385,
     description: "Charming home with upgraded fixtures and move-in ready condition",
-    imageUrl: "https://example.com/prop5.jpg",
+    imageUrl: "https://photos.zillowstatic.com/fp/f20ac8a6e9fdbb0bcf7043b235f9e44a-cc_ft_960.jpg",
   },
   {
     id: "prop-006",
@@ -91,7 +91,7 @@ const mockProperties: Property[] = [
     bathrooms: 3,
     sqft: 1600,
     description: "Modern home with contemporary design and excellent flow",
-    imageUrl: "https://example.com/prop6.jpg",
+    imageUrl: "https://photos.zillowstatic.com/fp/PLACEHOLDER-cc_ft_960.jpg", // TODO: Get real photo URL
   },
 ];
 
