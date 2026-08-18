@@ -1,5 +1,4 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { Mistral } from "@mistralai/mistralai";
 import axios from "axios";
 
 interface Property {
@@ -44,7 +43,6 @@ if (availableProviders.length === 0) {
 }
 
 const genAI = geminiKey ? new GoogleGenerativeAI(geminiKey) : null;
-const mistral = mistralKey ? new Mistral({ apiKey: mistralKey }) : null;
 
 // Rotation counter
 let currentProviderIndex = 0;
@@ -128,26 +126,44 @@ async function generateWithGemini(property: Property, prompt: string): Promise<a
 }
 
 async function generateWithMistral(property: Property, prompt: string): Promise<any> {
-  if (!mistral) throw new Error("Mistral API key not set");
-  const message = await mistral.messages.create({
+  if (!mistralKey) throw new Error("Mistral API key not set");
+  const response = await axios.post("https://api.mistral.ai/v1/chat/completions", {
     model: "mistral-large-latest",
     messages: [{ role: "user", content: prompt }],
+  }, {
+    headers: { Authorization: `Bearer ${mistralKey}` },
   });
-  const text = message.content[0].type === "text" ? message.content[0].text : "";
+  const text = response.data.choices[0].message.content;
   return JSON.parse(text);
 }
 
 async function generateWithGroq(property: Property, prompt: string): Promise<any> {
   if (!groqKey) throw new Error("Groq API key not set");
-  const response = await axios.post("https://api.groq.com/openai/v1/chat/completions", {
-    model: "mixtral-8x7b-32768",
-    messages: [{ role: "user", content: prompt }],
-    temperature: 0.7,
-  }, {
-    headers: { Authorization: `Bearer ${groqKey}` },
-  });
-  const text = response.data.choices[0].message.content;
-  return JSON.parse(text);
+  try {
+    const response = await axios.post(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        model: "mixtral-8x7b-32768",
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.7,
+        max_tokens: 2048,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${groqKey}`,
+          "Content-Type": "application/json",
+        },
+        timeout: 30000,
+      }
+    );
+    const text = response.data.choices[0].message.content;
+    return JSON.parse(text);
+  } catch (error: any) {
+    if (error.response?.data) {
+      throw new Error(`Groq API error: ${JSON.stringify(error.response.data)}`);
+    }
+    throw error;
+  }
 }
 
 async function generateMarketingContent(
