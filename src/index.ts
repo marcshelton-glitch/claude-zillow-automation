@@ -144,7 +144,7 @@ async function generateWithGroq(property: Property, prompt: string): Promise<any
     const response = await axios.post(
       "https://api.groq.com/openai/v1/chat/completions",
       {
-        model: "mixtral-8x7b-32768-gemma-2-9b-it",
+        model: "llama-3.1-70b-versatile",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.7,
         max_tokens: 2048,
