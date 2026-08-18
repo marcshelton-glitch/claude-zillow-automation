@@ -115,12 +115,12 @@ Property Details:
 Generate the following in JSON format:
 {
   "marketingDescription": "A compelling 2-3 sentence marketing description for the listing",
-  "videoPrompt": "A prompt for generating a property showcase video using Viewmax (describe what the video should show)",
-  "imagePrompt": "A prompt for generating a hero image of the property using Viewmax",
-  "voiceoverScript": "A 30-second voiceover script for the property video"
+  "videoPrompt": "A prompt for generating a property showcase video using Viewmax. CRITICAL: Must specifically mention touring the ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms. Include property address ${property.address} and specific features from the description. Describe camera movements and specific rooms.",
+  "imagePrompt": "A prompt for generating a hero image of the property using Viewmax. CRITICAL: Must include the specific property address ${property.address} and reference the ${property.bedrooms}-bedroom, ${property.bathrooms}-bathroom home.",
+  "voiceoverScript": "A 30-second voiceover script for the property video. CRITICAL: Must mention the ${property.bedrooms} bedrooms, ${property.bathrooms} bathrooms, and ${property.sqft.toLocaleString()} square feet."
 }
 
-Make it engaging, professional, and focus on selling points. Return ONLY valid JSON.`;
+Make it engaging, professional, and focus on selling points. Ensure all property-specific details are included in each prompt. Return ONLY valid JSON.`;
 
   const result = await model.generateContent(prompt);
   const responseText = result.response.text();
