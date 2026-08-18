@@ -1,0 +1,32 @@
+{
+  "name": "claude-zillow-automation",
+  "version": "1.0.0",
+  "description": "Automate real estate marketing content generation using Claude + Viewmax MCP",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "claude",
+    "zillow",
+    "real-estate",
+    "marketing",
+    "ai",
+    "automation",
+    "viewmax"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0"
+  }
+}
