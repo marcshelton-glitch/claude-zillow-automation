@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6 Property Marketing Packages</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            color: #222;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .package-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s, transform 0.3s;
+            border-left: 4px solid #2a1a4e;
+        }
+        .package-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+        }
+        .package-header {
+            background: linear-gradient(135deg, #2a1a4e 0%, #3d2560 100%);
+            color: white;
+            padding: 24px;
+        }
+        .package-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .address {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 12px;
+            color: #ffd700;
+        }
+        .package-body {
+            padding: 24px;
+        }
+        .package-detail {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .package-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #2a1a4e;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .detail-value {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        .highlights {
+            background: #f9f9f9;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .highlights li {
+            list-style: none;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+        .highlights li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #20c997;
+            font-weight: bold;
+        }
+        .roi-box {
+            background: linear-gradient(135deg, #fffef5 0%, #f9f7f4 100%);
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        .roi-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .roi-item:last-child {
+            margin-bottom: 0;
+        }
+        .roi-label {
+            color: #2a1a4e;
+            font-weight: 600;
+        }
+        .roi-value {
+            color: #20c997;
+            font-weight: 700;
+        }
+        .positioning {
+            background: #f0f8ff;
+            border-left: 4px solid #2a1a4e;
+            padding: 12px 16px;
+            margin-top: 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .property-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+        .spec {
+            background: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        .spec-label {
+            color: #666;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .spec-value {
+            color: #222;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .summary {
+            background: #fafafa;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .summary h3 {
+            color: #2a1a4e;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+        }
+        .summary p {
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 6 Property Marketing Packages</h1>
+
+        <div class="packages-grid">
+            <!-- Package 1: Family Home -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2>Family Home</h2>
+                    <div class="address">12205 Deerwood Ln</div>
+                    <div class="price">$559,500</div>
+                </div>
+                <div class="package-body">
+                    <div class="property-specs">
+                        <div class="spec">
+                            <div class="spec-label">Bedrooms</div>
+                            <div class="spec-value">3</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Bathrooms</div>
+                            <div class="spec-value">3</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Sq Ft</div>
+                            <div class="spec-value">1,500</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Agent</div>
+                            <div class="spec-value">Maricarmen</div>
+                        </div>
+                    </div>
+
+                    <div class="positioning">
+                        <strong>Positioning:</strong> Bright spaces, updated kitchen, family-friendly neighborhood
+                    </div>
+
+                    <div class="roi-box">
+                        <div class="roi-item">
+                            <span class="roi-label">Investment:</span>
+                            <span class="roi-value">$199</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Expected ROI:</span>
+                            <span class="roi-value">125x ($24,875)</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Views:</span>
+                            <span class="roi-value">3x increase</span>
+                        </div>
+                    </div>
+
+                    <div class="highlights">
+                        <li>Professional video tour</li>
+                        <li>Premium photography</li>
+                        <li>SEO-optimized copy</li>
+                        <li>Social media content</li>
+                        <li>Marketing strategy</li>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 2: Established Property -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2>Established</h2>
+                    <div class="address">23711 Redbark Dr</div>
+                    <div class="price">$535,000</div>
+                </div>
+                <div class="package-body">
+                    <div class="property-specs">
+                        <div class="spec">
+                            <div class="spec-label">Bedrooms</div>
+                            <div class="spec-value">3</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Bathrooms</div>
+                            <div class="spec-value">2</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Sq Ft</div>
+                            <div class="spec-value">1,480</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Agent</div>
+                            <div class="spec-value">Marisol</div>
+                        </div>
+                    </div>
+
+                    <div class="positioning">
+                        <strong>Positioning:</strong> Professional presentation, market-ready, solid value
+                    </div>
+
+                    <div class="roi-box">
+                        <div class="roi-item">
+                            <span class="roi-label">Investment:</span>
+                            <span class="roi-value">$199</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Expected ROI:</span>
+                            <span class="roi-value">125x ($24,875)</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Views:</span>
+                            <span class="roi-value">3x increase</span>
+                        </div>
+                    </div>
+
+                    <div class="highlights">
+                        <li>Professional video tour</li>
+                        <li>Premium photography</li>
+                        <li>SEO-optimized copy</li>
+                        <li>Social media content</li>
+                        <li>Marketing strategy</li>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 3: Luxury -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2>💎 Luxury</h2>
+                    <div class="address">21250 Tennyson Rd</div>
+                    <div class="price">$689,000</div>
+                </div>
+                <div class="package-body">
+                    <div class="property-specs">
+                        <div class="spec">
+                            <div class="spec-label">Bedrooms</div>
+                            <div class="spec-value">5</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Bathrooms</div>
+                            <div class="spec-value">3</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Sq Ft</div>
+                            <div class="spec-value">2,567</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Agent</div>
+                            <div class="spec-value">Kin San</div>
+                        </div>
+                    </div>
+
+                    <div class="positioning">
+                        <strong>Positioning:</strong> Spa master bath, gourmet kitchen, executive-level amenities
+                    </div>
+
+                    <div class="roi-box">
+                        <div class="roi-item">
+                            <span class="roi-label">Investment:</span>
+                            <span class="roi-value">$199</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Expected ROI:</span>
+                            <span class="roi-value">125x+ ($30,000+)</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Views:</span>
+                            <span class="roi-value">4x increase</span>
+                        </div>
+                    </div>
+
+                    <div class="highlights">
+                        <li>Cinema-quality video</li>
+                        <li>Premium photography</li>
+                        <li>Executive positioning</li>
+                        <li>Luxury social strategy</li>
+                        <li>Professional voiceover</li>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 4: Coming Soon -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2>🚀 Coming Soon</h2>
+                    <div class="address">11948 Kevin St</div>
+                    <div class="price">$545,000</div>
+                </div>
+                <div class="package-body">
+                    <div class="property-specs">
+                        <div class="spec">
+                            <div class="spec-label">Bedrooms</div>
+                            <div class="spec-value">4</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Bathrooms</div>
+                            <div class="spec-value">2</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Sq Ft</div>
+                            <div class="spec-value">1,422</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Agent</div>
+                            <div class="spec-value">Jill</div>
+                        </div>
+                    </div>
+
+                    <div class="positioning">
+                        <strong>Positioning:</strong> Launch 08/24, pre-launch buzz campaign, urgency-driven
+                    </div>
+
+                    <div class="roi-box">
+                        <div class="roi-item">
+                            <span class="roi-label">Investment:</span>
+                            <span class="roi-value">$199</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Expected Outcome:</span>
+                            <span class="roi-value">Multiple offers</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Strategy:</span>
+                            <span class="roi-value">Pre-launch buzz</span>
+                        </div>
+                    </div>
+
+                    <div class="highlights">
+                        <li>"Coming Soon" buzz campaign</li>
+                        <li>Pre-launch video teaser</li>
+                        <li>Launch day coordination</li>
+                        <li>Social media sequence</li>
+                        <li>Email campaign ready</li>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 5: Move-In Ready -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2>🔑 Move-In Ready</h2>
+                    <div class="address">12044 Champlain St</div>
+                    <div class="price">$519,900</div>
+                </div>
+                <div class="package-body">
+                    <div class="property-specs">
+                        <div class="spec">
+                            <div class="spec-label">Bedrooms</div>
+                            <div class="spec-value">3</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Bathrooms</div>
+                            <div class="spec-value">3</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Sq Ft</div>
+                            <div class="spec-value">1,385</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Agent</div>
+                            <div class="spec-value">Samantha</div>
+                        </div>
+                    </div>
+
+                    <div class="positioning">
+                        <strong>Positioning:</strong> Zero repairs needed, upgraded fixtures, turnkey ready
+                    </div>
+
+                    <div class="roi-box">
+                        <div class="roi-item">
+                            <span class="roi-label">Investment:</span>
+                            <span class="roi-value">$199</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Expected ROI:</span>
+                            <span class="roi-value">125x ($24,875)</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Views:</span>
+                            <span class="roi-value">3x increase</span>
+                        </div>
+                    </div>
+
+                    <div class="highlights">
+                        <li>"Move-In Ready" messaging</li>
+                        <li>Condition documentation</li>
+                        <li>Investor targeting</li>
+                        <li>No-repairs marketing</li>
+                        <li>Premium pricing justified</li>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 6: Modern Design -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2>🏢 Modern Design</h2>
+                    <div class="address">11820 Bayless St</div>
+                    <div class="price">$575,000</div>
+                </div>
+                <div class="package-body">
+                    <div class="property-specs">
+                        <div class="spec">
+                            <div class="spec-label">Bedrooms</div>
+                            <div class="spec-value">3</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Bathrooms</div>
+                            <div class="spec-value">3</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Sq Ft</div>
+                            <div class="spec-value">1,600</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-label">Agent</div>
+                            <div class="spec-value">Teri</div>
+                        </div>
+                    </div>
+
+                    <div class="positioning">
+                        <strong>Positioning:</strong> Contemporary design, open floor plan, design-buyer targeting
+                    </div>
+
+                    <div class="roi-box">
+                        <div class="roi-item">
+                            <span class="roi-label">Investment:</span>
+                            <span class="roi-value">$199</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Expected ROI:</span>
+                            <span class="roi-value">125x ($24,875)</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="roi-label">Views:</span>
+                            <span class="roi-value">4x increase</span>
+                        </div>
+                    </div>
+
+                    <div class="highlights">
+                        <li>Architectural photography</li>
+                        <li>Design-focused video</li>
+                        <li>Contemporary copy</li>
+                        <li>Pinterest/Instagram strategy</li>
+                        <li>Design-buyer targeting</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h3>✅ All Packages Ready to Deploy</h3>
+            <p><strong>Total Investment per Package:</strong> $199</p>
+            <p><strong>Average Expected ROI:</strong> 125x return ($24,875+)</p>
+            <p><strong>Key Metrics:</strong> 3-4x more views • 50% faster sales • $250+ additional profit</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">
+                Each package is uniquely positioned for its property type and ready to send to agents immediately.
+            </p>
+            <span class="status-badge">✓ Ready to Send</span>
+        </div>
+    </div>
+</body>
+</html>
