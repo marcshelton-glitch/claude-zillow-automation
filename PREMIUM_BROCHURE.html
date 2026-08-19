@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Marketing Packages - Premium Brochure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2a1a4e;
+            --primary-light: #3d2872;
+            --accent: #ffd700;
+            --accent-dark: #ffed4e;
+            --success: #20c997;
+            --warning: #ff6b6b;
+            --neutral-bg: #f9f7f4;
+            --neutral-dark: #1a0f2e;
+            --text-primary: #000000;
+            --text-secondary: #333333;
+            --text-light: #ffffff;
+            --border: #e8dfd5;
+            --glass-light: rgba(255, 255, 255, 0.98);
+            --shadow-light: 0 4px 12px rgba(42, 26, 78, 0.15);
+            --shadow-medium: 0 12px 24px rgba(42, 26, 78, 0.25);
+            --shadow-deep: 0 20px 48px rgba(42, 26, 78, 0.35);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--neutral-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* Premium Header with Gradient */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #0f1a2e 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.25);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: #ffffff;
+            text-shadow: 0 6px 16px rgba(0, 0, 0, 0.8), 0 3px 10px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 1;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hero Stat with Glass Effect */
+        .hero-stat {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            padding: 50px 40px;
+            text-align: center;
+            color: #000000;
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .hero-stat-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            color: #000000;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Premium Section */
+        .section {
+            padding: 70px 40px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-number {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            opacity: 0.05;
+            font-weight: 800;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: none;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .section h2 {
+                color: #ffffff;
+                text-shadow: 0 6px 16px rgba(0, 0, 0, 0.9), 0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        .section h2::before {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        .section h2::after {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+
+        /* Comparison Cards - Premium */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-box {
+            padding: 40px;
+            border-radius: 12px;
+            background: white;
+            border: 3px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15), 0 8px 24px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #999 0%, #999 100%);
+        }
+
+        .comparison-box.positive {
+            border-color: var(--success);
+            background: linear-gradient(135deg, var(--success) 0%, #00dd77 100%);
+            box-shadow: 0 12px 32px rgba(0, 255, 136, 0.4), var(--shadow-deep);
+        }
+
+        .comparison-box.positive::before {
+            background: var(--success);
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.5);
+        }
+
+        .comparison-box.positive,
+        .comparison-box.positive .comparison-label,
+        .comparison-box.positive .comparison-stat {
+            color: #ffffff;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .comparison-box.negative {
+            border-color: var(--warning);
+            background: linear-gradient(135deg, var(--warning) 0%, #ff0044 100%);
+            box-shadow: 0 12px 32px rgba(255, 0, 85, 0.4), var(--shadow-deep);
+        }
+
+        .comparison-box.negative::before {
+            background: var(--warning);
+            box-shadow: 0 4px 12px rgba(255, 0, 85, 0.5);
+        }
+
+        .comparison-box.negative,
+        .comparison-box.negative .comparison-label,
+        .comparison-box.negative .comparison-stat {
+            color: #ffffff;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .comparison-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-label {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            color: #000000;
+            letter-spacing: -0.3px;
+        }
+
+        .comparison-stat {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 15px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            color: #000000;
+        }
+
+        .comparison-stat .unit {
+            font-size: 0.6em;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        .comparison-stat.success {
+            color: var(--success);
+        }
+
+        .comparison-stat.warning {
+            color: var(--warning);
+        }
+
+        .comparison-stat.accent {
+            color: var(--accent);
+        }
+
+        /* Real Profitability Section */
+        .scenario {
+            background: white;
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 12px;
+            border: 3px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .scenario::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .scenario h3 {
+            font-family: 'Playfair Display', serif;
+            color: #000000;
+            margin-bottom: 25px;
+            font-size: 1.4em;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .scenario-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .scenario-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scenario-side {
+            padding: 20px;
+            border-radius: 8px;
+            background: var(--neutral-bg);
+        }
+
+        .scenario-side h4 {
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .scenario-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            line-height: 1.8;
+        }
+
+        .scenario-stat:last-child {
+            border-bottom: none;
+        }
+
+        .scenario-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        .scenario-stat-value {
+            font-weight: 700;
+            color: #000000;
+            font-size: 1.1em;
+        }
+
+        .scenario-stat-value.positive {
+            color: var(--success);
+        }
+
+        .scenario-stat-value.negative {
+            color: var(--warning);
+        }
+
+        .scenario-highlight {
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 0, 0.15) 0%, rgba(255, 255, 0, 0.08) 100%);
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .scenario-highlight strong {
+            color: #000000;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* ROI Grid */
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .roi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .roi-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid rgba(232, 197, 71, 0.3);
+            box-shadow: 0 12px 32px rgba(13, 40, 24, 0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .roi-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(232, 197, 71, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .roi-box.accent {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: #000000;
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .roi-box.accent .roi-label,
+        .roi-box.accent .roi-number,
+        .roi-box.accent .roi-detail {
+            color: #000000;
+            font-weight: 800;
+        }
+
+        .roi-box.success {
+            background: linear-gradient(135deg, var(--success) 0%, #00dd77 100%);
+            color: #000000;
+            box-shadow: 0 12px 32px rgba(0, 255, 136, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .roi-box.success .roi-label,
+        .roi-box.success .roi-number,
+        .roi-box.success .roi-detail {
+            color: #000000;
+            font-weight: 800;
+        }
+
+        .roi-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        .roi-label {
+            font-size: 0.95em;
+            opacity: 1;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .roi-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            font-weight: 800;
+            margin: 12px 0;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .roi-detail {
+            font-size: 0.9em;
+            opacity: 1;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Three Scenarios */
+        .scenario-boxes {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 1024px) {
+            .scenario-boxes {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scenario-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 35px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scenario-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .scenario-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #000000;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+
+        .scenario-card-stat {
+            margin: 15px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .scenario-card-stat:last-child {
+            border-bottom: none;
+        }
+
+        .scenario-card-label {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .scenario-card-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pricing-card {
+            background: white;
+            border: 3px solid var(--border);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            transform: scale(1.06);
+            box-shadow: 0 24px 60px rgba(255, 215, 0, 0.4), var(--shadow-deep);
+        }
+
+        .pricing-card.featured::before {
+            background: var(--accent);
+            box-shadow: 0 6px 16px rgba(255, 215, 0, 0.5);
+        }
+
+        .pricing-card.featured .pricing-title,
+        .pricing-card.featured .pricing-description,
+        .pricing-card.featured .pricing-price,
+        .pricing-card.featured .pricing-subtext,
+        .pricing-card.featured .pricing-roi,
+        .pricing-card.featured .pricing-features,
+        .pricing-card.featured .pricing-features li {
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .pricing-card:hover:not(.featured) {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .pricing-description {
+            font-size: 0.95em;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .pricing-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 20px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .pricing-subtext {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .pricing-roi {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 800;
+            color: #000000;
+            margin: 25px 0;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.featured .pricing-roi {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-features {
+            font-size: 0.95em;
+            text-align: left;
+            line-height: 2.2;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li {
+            list-style: none;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2em;
+            margin-bottom: 20px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 1.35em;
+            margin-bottom: 40px;
+            opacity: 1;
+            font-weight: 500;
+            color: #ffffff;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 18px 55px;
+            font-size: 1.15em;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin: 12px;
+            border: 3px solid var(--accent);
+            letter-spacing: 0.8px;
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4), 0 6px 16px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6), 0 10px 24px rgba(0, 0, 0, 0.3);
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 3px solid var(--accent);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6);
+        }
+
+        /* Guarantee Badge */
+        .guarantee-section {
+            text-align: center;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.05) 0%, transparent 100%);
+            border: 2px dashed var(--success);
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .guarantee-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 0.3px;
+        }
+
+        .guarantee-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: #ffffff;
+            font-size: 1.3em;
+            margin: 15px 0;
+            font-weight: 700;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .guarantee-section p {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 8px 0;
+            opacity: 1;
+            font-weight: 300;
+            color: #ffffff;
+        }
+
+        .footer p:first-child {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            opacity: 1;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--neutral-dark);
+                color: white;
+            }
+            .container {
+                background: #1a1a1a;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="header-badge">Professional Real Estate Marketing</div>
+                <h1>Transform Your Listings Into Market Leaders</h1>
+                <p>Professional video, photography, and marketing content—expertly crafted for maximum impact</p>
+            </div>
+        </div>
+
+        <!-- Hero Stat -->
+        <div class="hero-stat">
+            <div class="hero-stat-content">
+                <div class="stat-number">$5,000–15,000</div>
+                <div class="stat-label">Average Price Increase Per Property</div>
+            </div>
+        </div>
+
+        <!-- Comparison Section -->
+        <div class="section">
+            <div class="section-number">01</div>
+            <h2>The Difference Professional Marketing Makes</h2>
+
+            <div class="comparison">
+                <div class="comparison-box negative">
+                    <div class="comparison-label">❌ Standard Approach</div>
+                    <div class="comparison-stat warning">
+                        <span>500</span>
+                        <span class="unit">views/week</span>
+                    </div>
+                    <div class="comparison-stat warning">
+                        <span>45</span>
+                        <span class="unit">days to sale</span>
+                    </div>
+                    <div class="comparison-stat warning">
+                        <span>Market price</span>
+                    </div>
+                    <div class="comparison-stat accent" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(0,0,0,0.1);">
+                        <span>$12,500</span>
+                        <span class="unit">commission</span>
+                    </div>
+                </div>
+
+                <div class="comparison-box positive">
+                    <div class="comparison-label">✨ With Our Package</div>
+                    <div class="comparison-stat success">
+                        <span>1,500–3,000</span>
+                        <span class="unit">views/week</span>
+                    </div>
+                    <div class="comparison-stat success">
+                        <span>23</span>
+                        <span class="unit">days to sale</span>
+                    </div>
+                    <div class="comparison-stat success">
+                        <span>+$10,000 higher</span>
+                    </div>
+                    <div class="comparison-stat accent" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(0,0,0,0.1);">
+                        <span>$12,750</span>
+                        <span class="unit">commission</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real Numbers -->
+        <div class="section">
+            <div class="section-number">02</div>
+            <h2>Real Profitability In Action</h2>
+
+            <div class="scenario">
+                <h3>🏠 $500,000 Property Example</h3>
+
+                <div class="scenario-comparison">
+                    <div class="scenario-side">
+                        <h4>Without Premium Package</h4>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label">Monthly Views</span>
+                            <span class="scenario-stat-value negative">~2,000</span>
+                        </div>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label">Weekly Inquiries</span>
+                            <span class="scenario-stat-value negative">2–3</span>
+                        </div>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label">Time to Sale</span>
+                            <span class="scenario-stat-value negative">45 days</span>
+                        </div>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label">Selling Price</span>
+                            <span class="scenario-stat-value">$500,000</span>
+                        </div>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label"><strong>Your Commission</strong></span>
+                            <span class="scenario-stat-value negative"><strong>$12,500</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="scenario-side">
+                        <h4>✨ With Premium Package</h4>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label">Monthly Views</span>
+                            <span class="scenario-stat-value positive">~6,000–12,000</span>
+                        </div>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label">Weekly Inquiries</span>
+                            <span class="scenario-stat-value positive">8–12</span>
+                        </div>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label">Time to Sale</span>
+                            <span class="scenario-stat-value positive">23 days</span>
+                        </div>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label">Selling Price</span>
+                            <span class="scenario-stat-value positive">$510,000</span>
+                        </div>
+                        <div class="scenario-stat">
+                            <span class="scenario-stat-label"><strong>Your Commission</strong></span>
+                            <span class="scenario-stat-value positive"><strong>$12,750+</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scenario-highlight">
+                    <strong>💰 Package Investment: $199</strong>
+                    <div style="margin-top: 10px;">Extra profit from one sale: <strong style="color: var(--success);">$250+</strong> (from higher price)</div>
+                    <div style="margin-top: 10px; font-style: italic; opacity: 0.9;">Real advantage: Sell twice as fast = Handle 2x more properties annually</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROI -->
+        <div class="section">
+            <div class="section-number">03</div>
+            <h2>Investment & Return Analysis</h2>
+
+            <div class="roi-grid">
+                <div class="roi-box">
+                    <div class="roi-label">Your Investment</div>
+                    <div class="roi-number">$199</div>
+                    <div class="roi-detail">Per property package</div>
+                </div>
+
+                <div class="roi-box success">
+                    <div class="roi-label">Immediate Gain</div>
+                    <div class="roi-number">$250+</div>
+                    <div class="roi-detail">Extra per transaction</div>
+                </div>
+
+                <div class="roi-box accent">
+                    <div class="roi-label">ROI Multiple</div>
+                    <div class="roi-number">125x</div>
+                    <div class="roi-detail">On your investment</div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%); padding: 40px; border-radius: 12px; border: 2px solid rgba(212, 175, 55, 0.3); margin-top: 40px;">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px; font-size: 1.3em;">🚀 The Compounding Advantage</h3>
+                <div style="line-height: 2; color: var(--text-primary);">
+                    <div style="margin: 15px 0; font-weight: 600;">Listings sell 2x faster with professional presentation</div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent); margin-top: 20px;">
+                        <div style="margin: 10px 0;"><strong>Example:</strong> 10 listings per month (typical)</div>
+                        <div style="margin: 10px 0;"><strong>With 2x faster sales:</strong> 20 listings per month</div>
+                        <div style="margin: 10px 0;"><strong>At 5% commission (avg $250K):</strong> $25,000 more revenue monthly</div>
+                        <div style="margin: 10px 0; font-weight: 700; color: var(--success); font-size: 1.1em;">= $300,000 extra annually</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Three Scenarios -->
+        <div class="section">
+            <div class="section-number">04</div>
+            <h2>Profitability By Agent Profile</h2>
+
+            <div class="scenario-boxes">
+                <div class="scenario-card">
+                    <h3>Solo Agent</h3>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">1–2 listings/month</div>
+                        <div class="scenario-card-value">$199–398</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Extra Profit</div>
+                        <div class="scenario-card-value" style="color: var(--success);">$250–500</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Annual Gain</div>
+                        <div class="scenario-card-value" style="color: var(--accent);">$3,000–6,000</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Payback</div>
+                        <div class="scenario-card-value">1–2 sales</div>
+                    </div>
+                </div>
+
+                <div class="scenario-card">
+                    <h3>Growing Agent</h3>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">5–10 listings/month</div>
+                        <div class="scenario-card-value">$800–1,200</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Extra Profit</div>
+                        <div class="scenario-card-value" style="color: var(--success);">$1,250–2,500</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Annual Gain</div>
+                        <div class="scenario-card-value" style="color: var(--accent);">$15,000–30,000</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Payback</div>
+                        <div class="scenario-card-value">3–5 days</div>
+                    </div>
+                </div>
+
+                <div class="scenario-card">
+                    <h3>Team/Brokerage</h3>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">20+ listings/month</div>
+                        <div class="scenario-card-value">$4,000–8,000</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Extra Profit</div>
+                        <div class="scenario-card-value" style="color: var(--success);">$5,000–15,000</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Annual Gain</div>
+                        <div class="scenario-card-value" style="color: var(--accent);">$60,000–180,000</div>
+                    </div>
+                    <div class="scenario-card-stat">
+                        <div class="scenario-card-label">Payback</div>
+                        <div class="scenario-card-value">Same week</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="section">
+            <div class="section-number">05</div>
+            <h2>Pricing & Packages</h2>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-title">Individual</div>
+                    <div class="pricing-description">Test on one property</div>
+                    <div class="pricing-price">$199</div>
+                    <div class="pricing-subtext">per property</div>
+                    <div class="pricing-roi">ROI: 125x</div>
+                    <ul class="pricing-features">
+                        <li>Professional video</li>
+                        <li>Hero listing image</li>
+                        <li>SEO copy & scripts</li>
+                        <li>Social media posts</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-title">🏆 Bundle</div>
+                    <div class="pricing-description">Best value—most popular</div>
+                    <div class="pricing-price">$799</div>
+                    <div class="pricing-subtext">6 properties ($133 each)</div>
+                    <div class="pricing-roi">Saves $397</div>
+                    <ul class="pricing-features">
+                        <li>6 complete packages</li>
+                        <li>All individual features</li>
+                        <li>Use over 2–3 months</li>
+                        <li>Expected gain: $1,500–3,000</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-title">White Label</div>
+                    <div class="pricing-description">Resell to agents</div>
+                    <div class="pricing-price">$2,999</div>
+                    <div class="pricing-subtext">unlimited resale</div>
+                    <div class="pricing-roi">ROI: 3x month one</div>
+                    <ul class="pricing-features">
+                        <li>Resell at $299/each</li>
+                        <li>30 agents = $8,970</li>
+                        <li>Recurring income</li>
+                        <li>Your branding</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guarantee -->
+        <div class="section">
+            <div class="guarantee-section">
+                <div class="guarantee-badge">✅ 30-Day Money-Back Guarantee</div>
+                <h3>Risk-Free Investment</h3>
+                <p>Not thrilled with results? Full refund within 30 days—no questions asked. We're confident this works.</p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Dominate Your Market?</h2>
+                <p>Start with one property. See the results. Scale to every listing in your portfolio.</p>
+                <a href="#" class="cta-button">Get Started Today</a>
+                <a href="#" class="cta-button secondary">View Sample Package</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Real Estate Marketing Packages</p>
+            <p>Professional video • Hero images • SEO copy • Social media ready</p>
+            <p style="margin-top: 20px; opacity: 0.7;">Get 3x more views. Sell 2x faster. Earn $5–15K more per property.</p>
+        </div>
+    </div>
+</body>
+</html>
