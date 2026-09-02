@@ -1,4 +1,3 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from "axios";
 
 interface Property {
@@ -12,6 +11,13 @@ interface Property {
   imageUrl?: string;
 }
 
+interface ContentResult {
+  marketingDescription?: string;
+  videoPrompt?: string;
+  imagePrompt?: string;
+  voiceoverScript?: string;
+}
+
 interface GeneratedContent {
   property: Property;
   marketingDescription: string;
@@ -21,39 +27,15 @@ interface GeneratedContent {
   provider: string;
 }
 
-type APIProvider = "gemini" | "mistral" | "groq";
+const PROVIDER = "mistral";
 
-// API Key validation
-const geminiKey = process.env.GOOGLE_API_KEY;
 const mistralKey = process.env.MISTRAL_API_KEY;
-const groqKey = process.env.GROQ_API_KEY;
 
-const availableProviders: APIProvider[] = [];
-// Mistral: Unlimited free tier - PRIMARY API
-if (mistralKey) availableProviders.push("mistral");
-// Gemini: Limited to 20 requests/day (quota exhausted today - resets tomorrow)
-// Groq: Models decommissioned - awaiting account tier upgrade
-// TODO: Add Gemini back when quota resets (24h cycle)
-// TODO: Fix Groq when account tier supports current models
-
-if (availableProviders.length === 0) {
-  console.error("❌ Error: No API keys configured!");
-  console.error("Set at least one of:");
-  console.error("  - GOOGLE_API_KEY for Gemini: https://aistudio.google.com/app/apikey");
-  console.error("  - MISTRAL_API_KEY for Mistral: https://console.mistral.ai/api-keys");
-  console.error("  - GROQ_API_KEY for Groq: https://console.groq.com/keys");
+if (!mistralKey) {
+  console.error("❌ Error: MISTRAL_API_KEY not configured!");
+  console.error("Get a free API key at: https://console.mistral.ai/api-keys");
+  console.error("Then run: export MISTRAL_API_KEY=your_key_here");
   process.exit(1);
-}
-
-const genAI = geminiKey ? new GoogleGenerativeAI(geminiKey) : null;
-
-// Rotation counter
-let currentProviderIndex = 0;
-
-function getNextProvider(): APIProvider {
-  const provider = availableProviders[currentProviderIndex];
-  currentProviderIndex = (currentProviderIndex + 1) % availableProviders.length;
-  return provider;
 }
 
 // Mock Zillow property data - Moreno Valley, CA comps
@@ -121,63 +103,68 @@ const mockProperties: Property[] = [
   },
 ];
 
-async function generateWithGemini(property: Property, prompt: string): Promise<any> {
-  if (!genAI) throw new Error("Gemini API key not set");
-  const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
-  const result = await model.generateContent(prompt);
-  return JSON.parse(result.response.text());
+function cleanJsonResponse(text: string): string {
+  return text.replace(/^```json\s*/g, "").replace(/\s*```$/g, "").trim();
 }
 
-async function generateWithMistral(property: Property, prompt: string): Promise<any> {
-  if (!mistralKey) throw new Error("Mistral API key not set");
-  const response = await axios.post("https://api.mistral.ai/v1/chat/completions", {
-    model: "mistral-large-latest",
-    messages: [{ role: "user", content: prompt }],
-  }, {
-    headers: { Authorization: `Bearer ${mistralKey}` },
-  });
-  let text = response.data.choices[0].message.content;
-  text = text.replace(/^```json\s*/g, "").replace(/\s*```$/g, "").trim();
-  return JSON.parse(text);
+function validateContentResult(result: unknown): ContentResult {
+  if (!result || typeof result !== "object") {
+    throw new Error("Invalid response: expected an object");
+  }
+
+  const obj = result as Record<string, unknown>;
+  const validated: ContentResult = {};
+
+  if (typeof obj.marketingDescription === "string") {
+    validated.marketingDescription = obj.marketingDescription;
+  }
+  if (typeof obj.videoPrompt === "string") {
+    validated.videoPrompt = obj.videoPrompt;
+  }
+  if (typeof obj.imagePrompt === "string") {
+    validated.imagePrompt = obj.imagePrompt;
+  }
+  if (typeof obj.voiceoverScript === "string") {
+    validated.voiceoverScript = obj.voiceoverScript;
+  }
+
+  if (!validated.marketingDescription || !validated.videoPrompt || !validated.imagePrompt || !validated.voiceoverScript) {
+    throw new Error("Response missing required fields: marketingDescription, videoPrompt, imagePrompt, voiceoverScript");
+  }
+
+  return validated as Required<ContentResult>;
 }
 
-async function generateWithGroq(property: Property, prompt: string): Promise<any> {
-  if (!groqKey) throw new Error("Groq API key not set");
+async function generateWithMistral(prompt: string): Promise<ContentResult> {
   try {
     const response = await axios.post(
-      "https://api.groq.com/openai/v1/chat/completions",
+      "https://api.mistral.ai/v1/chat/completions",
       {
-        model: "gemma-7b-it",
+        model: "mistral-large-latest",
         messages: [{ role: "user", content: prompt }],
-        temperature: 0.7,
-        max_tokens: 2048,
       },
       {
-        headers: {
-          Authorization: `Bearer ${groqKey}`,
-          "Content-Type": "application/json",
-        },
+        headers: { Authorization: `Bearer ${mistralKey}` },
         timeout: 30000,
       }
     );
-    let text = response.data.choices[0].message.content;
-    text = text.replace(/^```json\s*/g, "").replace(/\s*```$/g, "").trim();
-    return JSON.parse(text);
+
+    const text = cleanJsonResponse(response.data.choices[0].message.content);
+    const parsed = JSON.parse(text);
+    return validateContentResult(parsed);
   } catch (error: any) {
     if (error.response?.data) {
-      throw new Error(`Groq API error: ${JSON.stringify(error.response.data)}`);
+      throw new Error(`Mistral API error: ${JSON.stringify(error.response.data)}`);
+    }
+    if (error instanceof SyntaxError) {
+      throw new Error(`Failed to parse JSON response: ${error.message}`);
     }
     throw error;
   }
 }
 
-async function generateMarketingContent(
-  property: Property
-): Promise<GeneratedContent> {
-  const provider = getNextProvider();
-  console.log(`  Using: ${provider.toUpperCase()}`);
-
-  const prompt = `You are a real estate marketing expert. Analyze this property and its photo, then generate engaging marketing content.
+function buildMarketingPrompt(property: Property): string {
+  return `You are a real estate marketing expert. Generate engaging marketing content for this property.
 
 Property Details:
 - Address: ${property.address}
@@ -187,64 +174,63 @@ Property Details:
 - Square Feet: ${property.sqft.toLocaleString()}
 - Description: ${property.description}
 
-CRITICAL INSTRUCTIONS:
-1. Analyze the property photo provided to identify specific architectural features, color schemes, and design elements
-2. Reference ACTUAL visible features from the photo in all prompts (e.g., "the blue shutters," "the brick facade," "the stone entryway")
-3. All prompts MUST be property-specific, not generic
-4. Video and image prompts MUST reference what you see in the actual photo
+INSTRUCTIONS:
+1. All content MUST be specific to this property, not generic
+2. Reference the actual bedroom/bathroom count, square footage, and description details
+3. Video and image prompts should be detailed enough for a media generation tool to act on
 
 Generate the following in JSON format:
 {
-  "marketingDescription": "A compelling 2-3 sentence marketing description referencing specific photo features",
-  "videoPrompt": "VIEWMAX INSTRUCTION: Detailed video tour prompt that references the ${property.bedrooms} bedrooms, ${property.bathrooms} bathrooms, and specific architectural features visible in the property photo. Include property address ${property.address}. Describe exact camera movements and specific visible features.",
-  "imagePrompt": "VIEWMAX INSTRUCTION: Hero image prompt for ${property.address} that references the style and features seen in the property photo. Must include ${property.bedrooms}-bedroom, ${property.bathrooms}-bathroom home and reference specific colors/materials visible.",
-  "voiceoverScript": "A 30-second voiceover for ${property.address} mentioning ${property.bedrooms} bedrooms, ${property.bathrooms} bathrooms, ${property.sqft.toLocaleString()} square feet, and specific property features from the photo."
+  "marketingDescription": "A compelling 2-3 sentence marketing description",
+  "videoPrompt": "VIEWMAX INSTRUCTION: Detailed video tour prompt that references the ${property.bedrooms} bedrooms, ${property.bathrooms} bathrooms, and the property's described features. Include property address ${property.address}. Describe camera movements and highlighted features.",
+  "imagePrompt": "VIEWMAX INSTRUCTION: Hero image prompt for ${property.address}. Must reference the ${property.bedrooms}-bedroom, ${property.bathrooms}-bathroom home and its described style.",
+  "voiceoverScript": "A 30-second voiceover for ${property.address} mentioning ${property.bedrooms} bedrooms, ${property.bathrooms} bathrooms, ${property.sqft.toLocaleString()} square feet, and key property features."
 }
 
-Ensure all content is PROPERTY-SPECIFIC based on the actual photo. Return ONLY valid JSON.`;
+Return ONLY valid JSON, with no markdown code fences.`;
+}
+
+async function generateMarketingContent(
+  property: Property
+): Promise<GeneratedContent> {
+  console.log(`  Using: ${PROVIDER.toUpperCase()}`);
+
+  const prompt = buildMarketingPrompt(property);
 
   try {
-    let result;
-    switch (provider) {
-      case "gemini":
-        result = await generateWithGemini(property, prompt);
-        break;
-      case "mistral":
-        result = await generateWithMistral(property, prompt);
-        break;
-      case "groq":
-        result = await generateWithGroq(property, prompt);
-        break;
-    }
+    const result = await generateWithMistral(prompt);
 
     return {
       property,
-      marketingDescription: result.marketingDescription,
-      videoPrompt: result.videoPrompt,
-      imagePrompt: result.imagePrompt,
-      voiceoverScript: result.voiceoverScript,
-      provider,
+      marketingDescription: result.marketingDescription!,
+      videoPrompt: result.videoPrompt!,
+      imagePrompt: result.imagePrompt!,
+      voiceoverScript: result.voiceoverScript!,
+      provider: PROVIDER,
     };
   } catch (error: any) {
-    console.error(`  ❌ ${provider.toUpperCase()} failed:`, error.message);
+    console.error(`  ❌ ${PROVIDER.toUpperCase()} failed:`, error.message);
     throw error;
   }
 }
 
+function escapeShellArg(value: string): string {
+  return value.replace(/(["\\$`])/g, "\\$1");
+}
+
 function generateViewmaxCommand(content: GeneratedContent): string {
   return `viewmax generate --type "property-showcase" \\
-  --property-address "${content.property.address}" \\
+  --property-address "${escapeShellArg(content.property.address)}" \\
   --price "$${content.property.price.toLocaleString()}" \\
-  --video-prompt "${content.videoPrompt}" \\
-  --image-prompt "${content.imagePrompt}" \\
-  --voiceover-script "${content.voiceoverScript}"`;
+  --video-prompt "${escapeShellArg(content.videoPrompt)}" \\
+  --image-prompt "${escapeShellArg(content.imagePrompt)}" \\
+  --voiceover-script "${escapeShellArg(content.voiceoverScript)}"`;
 }
 
 async function processZillowListings(): Promise<void> {
-  console.log("🚀 Claude + Zillow Automation Tool (Multi-API)");
+  console.log("🚀 Claude + Zillow Automation Tool");
   console.log("========================================================\n");
-  console.log(`📊 Available APIs: ${availableProviders.join(", ").toUpperCase()}`);
-  console.log("📊 Processing properties with API rotation...\n");
+  console.log("📊 Processing properties...\n");
 
   const allContent: GeneratedContent[] = [];
 
