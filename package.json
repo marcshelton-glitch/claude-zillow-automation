@@ -1,17 +1,17 @@
 {
   "name": "claude-zillow-automation",
   "version": "1.0.0",
-  "description": "Automate real estate marketing content generation using Google Gemini + Viewmax MCP (FREE)",
+  "description": "Automate real estate marketing content generation using Mistral AI + Viewmax MCP (FREE)",
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
     "dev": "tsx src/index.ts",
+    "demo": "tsx src/demo.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
   "keywords": [
-    "gemini",
-    "google-ai",
+    "mistral",
     "zillow",
     "real-estate",
     "marketing",
@@ -23,8 +23,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@google/generative-ai": "^0.11.0",
-    "@mistralai/mistralai": "^2.6.3",
     "axios": "^1.19.0"
   },
   "devDependencies": {

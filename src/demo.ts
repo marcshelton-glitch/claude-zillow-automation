@@ -153,7 +153,7 @@ async function main() {
   console.log(`  3. Viewmax creates media → Marketing materials`);
   console.log(`  4. Materials → Real estate platforms → Sales! 💰\n`);
   console.log(
-    `📚 Ready to connect to real Anthropic API and Viewmax MCP? Set ANTHROPIC_API_KEY and run: npm run dev`
+    `📚 Ready to connect to the real Mistral API and Viewmax MCP? Set MISTRAL_API_KEY and run: npm run dev`
   );
 }
 
